@@ -33,3 +33,11 @@ function createBlocksInContainers(blockCount, parentSelector) {
 
 createBlockContainers(16, '.etch-a-sketch');
 createBlocksInContainers(16, '.block-container');
+
+const hoverBlocks = document.querySelectorAll('.block');
+
+hoverBlocks.forEach(block => {
+    block.addEventListener('mouseover', () => {
+        block.style.backgroundColor = 'black';
+    });
+});

@@ -32,15 +32,19 @@ function createBlocksInContainers(blockCount, parentSelector) {
 }
 
 function RemoveDiv (divClassName) {
-    const divsSelection = document.getElementsByClassName(divClassName);
-    for (let i = 0; i < divsSelection; i++) {
-        divsSelection[i].remove(); 
+    const divsSelection = document.querySelectorAll(divClassName);
+    for (let i = 0; i < divsSelection.length; i++) {
+        divsSelection.item(i).remove(); 
     }
 }
-RemoveDiv("main-container")
-function resetGrid () {
-
+function ResetGrid() {
+    RemoveDiv(".grid-row")
+    RemoveDiv(".grid-cell")
 }
+
+
+
+
 
 createBlockContainers(16, '.grid-container');
 createBlocksInContainers(16, '.grid-row');
@@ -82,6 +86,8 @@ slider.addEventListener('input', () => {
             gridRowSize = 16;
             gridcellSize = 16;
     }
+    
+    ResetGrid();
     createBlockContainers(gridRowSize, '.grid-container');
     createBlocksInContainers(gridcellSize, '.grid-row');
 })

@@ -11,7 +11,17 @@ body {
   margin: 0;
 }
 
-.etch-a-sketch {
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vh;
+  height: 50vh;
+  border: 2px solid green;
+}
+
+.grid-container {
   width: 400px;
   height: 400px;
   display: flex;
@@ -22,13 +32,13 @@ body {
   overflow: hidden;
 }
 
-.block-container {
+.grid-row {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
 }
 
-.block {
+.grid-cell {
     width: 25px;
     height: 25px;
     background-color: red;

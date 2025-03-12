@@ -7,13 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="slider-container">
-            <input type="range" min="1" max="4" value="1" class="slider" id="grid-size-slider">
-          </div>
-        <div class="grid-container"></div> 
-    </div>
-    <div class="test"></div>
+    <header class="app-header">
+        <div class="title-container">
+            <h1>Etch-a-Sketch</h1>
+        </div>
+    </header>
+    <main class="workspace">
+        <aside class="controls-container">
+            <div class="pen-color-container">
+                <button class="pen-color"></button>
+            </div>
+            <div class="slider-container">
+                <input type="range" min="1" max="4" value="1" class="slider" id="grid-size-slider">
+            </div>
+            <div class="rgb-button-container">
+                <button class="rgb-button">RGB</button>
+            </div>
+            <div class="reset-button-container">
+                <button class="reset-button">Reset</button>
+            </div>
+        </aside>
+        <section class="grid-container"></section> 
+    </main>
     <script src="main.js"></script>
 </body>
 </html>

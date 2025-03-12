@@ -37,26 +37,24 @@ function RemoveDiv (divClassName) {
         divsSelection.item(i).remove(); 
     }
 }
+
 function ResetGrid() {
     RemoveDiv(".grid-row")
     RemoveDiv(".grid-cell")
 }
 
-
-
-
+function addHoverEffect() {
+    let hoverBlocks = document.querySelectorAll('.grid-cell');
+    hoverBlocks.forEach(block => {
+        block.addEventListener('mouseover', () => {
+            block.style.backgroundColor = 'black';
+        });
+    });
+}
 
 createBlockContainers(16, '.grid-container');
 createBlocksInContainers(16, '.grid-row');
-
-const hoverBlocks = document.querySelectorAll('.grid-cell');
-
-hoverBlocks.forEach(block => {
-    block.addEventListener('mouseover', () => {
-        block.style.backgroundColor = 'black';
-    });
-});
-
+addHoverEffect();
 
 const slider = document.getElementById('grid-size-slider')
 slider.addEventListener('input', () => {
@@ -90,4 +88,5 @@ slider.addEventListener('input', () => {
     ResetGrid();
     createBlockContainers(gridRowSize, '.grid-container');
     createBlocksInContainers(gridcellSize, '.grid-row');
-})
+    addHoverEffect();
+});

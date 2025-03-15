@@ -4,31 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="app-header">
-        <div class="title-container">
+    <div class="container">
+        <header class="app-header">
             <h1>Etch-a-Sketch</h1>
-        </div>
-    </header>
-    <main class="workspace">
-        <aside class="controls-container">
-            <div class="pen-color-container">
-                <button class="pen-color"></button>
+        </header>
+        
+        <main class="workspace">
+            <div class="controls" aria-label="Drawing Controls">
+                <div class="controls-container">
+                    <div class="control-item pen-color-container">
+                        <label for="pen-color-picker">Pen Color</label>
+                        <input type="color" id="pen-color-picker" class="pen-color">
+                    </div>
+                    <div class="control-item slider-container">
+                        <label for="grid-size-slider">
+                        Grid
+                        </label>
+                        <input type="range" min="1" max="100" value="16" class="slider" id="grid-size-slider" aria-valuemin="1" aria-valuemax="100" aria-valuenow="16" aria-label="Grid size">
+                        <span class="grid-size-display">16 x 16</span>
+                </div>
+                <div class="control-item rgb-button-container">
+                    <button class="rgb-button" aria-pressed="false" aria-label="Toggle RGB Mode">RGB Mode</button> 
+                </div>
+                <div class="control-item reset-button-container">
+                    <button class="reset-button" aria-label="Reset Drawing">Reset</button>
+                </div>
             </div>
-            <div class="slider-container">
-                <input type="range" min="1" max="4" value="1" class="slider" id="grid-size-slider">
             </div>
-            <div class="rgb-button-container">
-                <button class="rgb-button">RGB</button>
-            </div>
-            <div class="reset-button-container">
-                <button class="reset-button">Reset</button>
-            </div>
-        </aside>
-        <section class="grid-container"></section> 
-    </main>
+            <section class="grid-container-parent" aria-label="Drawing Area">
+                <div class="grid-container">
+
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <h3 class="design">Design by chwebe <a href="https://github.com/chwebe" class="github-link" target="_blank" rel="noopener noreferrer"><i class="github-icon"></i></a></h3>
+        </footer>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

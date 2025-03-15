@@ -47,46 +47,75 @@ function addHoverEffect() {
     let hoverBlocks = document.querySelectorAll('.grid-cell');
     hoverBlocks.forEach(block => {
         block.addEventListener('mouseover', () => {
-            block.style.backgroundColor = 'black';
+            if (rgbModeActive) {
+                block.style.backgroundColor = getRandomColor();
+            } else {
+                block.style.backgroundColor = ColorPicker.value;
+            }
         });
     });
 }
 
-createBlockContainers(16, '.grid-container');
-createBlocksInContainers(16, '.grid-row');
-addHoverEffect();
+const ColorPicker = document.querySelector('.pen-color');
+ColorPicker.addEventListener('input', () => {
+    const color = ColorPicker.value;
+    const blocks = document.querySelectorAll('.grid-cell');
+});
+
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function createGrid(gridNumber) {
+    createBlockContainers(gridNumber, '.grid-container');
+    createBlocksInContainers(gridNumber, '.grid-row');
+    addHoverEffect();
+}
+
+function getSliderValue() {
+    return parseInt(document.getElementById('grid-size-slider').value);
+}
+
+function UpdateSliderValue() {
+    const sliderValue = getSliderValue();
+    const gridSizeDisplay = document.querySelectorAll('.grid-size-display');
+    gridSizeDisplay.forEach(display => {
+        display.textContent = `${sliderValue} x ${sliderValue}`;
+    });
+}
+
+// RGB mode state
+let rgbModeActive = false;
+
+createGrid(16);
 
 const slider = document.getElementById('grid-size-slider')
 slider.addEventListener('input', () => {
-    let sliderValue = parseInt(slider.value)
-    switch(sliderValue) {
-        case 0:
-            gridRowSize = 4;
-            gridcellSize = 4;
-            break;
-        case 1:
-            gridRowSize = 8;
-            gridcellSize = 8;
-            break;
-        case 2:
-            gridRowSize = 12;
-            gridcellSize = 12;
-            break;
-        case 3:
-            gridRowSize = 16;
-            gridcellSize = 16;
-            break;
-        case 4:
-            gridRowSize = 24;
-            gridcellSize = 24;
-            break;
-        default:
-            gridRowSize = 16;
-            gridcellSize = 16;
-    }
-    
     ResetGrid();
-    createBlockContainers(gridRowSize, '.grid-container');
-    createBlocksInContainers(gridcellSize, '.grid-row');
-    addHoverEffect();
+    createGrid(getSliderValue());
+    UpdateSliderValue();
+});
+
+const resetButton = document.querySelector('.reset-button');
+resetButton.addEventListener('click', () => {
+    ResetGrid();
+    createGrid(getSliderValue());
+    UpdateSliderValue();
+});
+
+// RGB Mode Toggle
+const rgbButton = document.querySelector('.rgb-button');
+rgbButton.addEventListener('click', () => {
+    rgbModeActive = !rgbModeActive;
+    rgbButton.setAttribute('aria-pressed', rgbModeActive);
+    
+    // Update visual indicator
+    if (rgbModeActive) {
+        rgbButton.classList.add('active');
+    } else {
+        rgbButton.classList.remove('active');
+    }
 });
